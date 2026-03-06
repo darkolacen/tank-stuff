@@ -23,19 +23,11 @@ local function ResolveFont(nameOrPath)
 end
 
 local function SetFrameUnlocked(frame, unlocked, label)
+    -- When "Preview" is on: frame is visible and draggable with sample data; no overlay (backdrop/label).
     if unlocked then
-        frame:SetBackdrop(FRAME_BACKDROP)
-        frame:SetBackdropColor(0, 0, 0, 0.5)
-        frame:SetBackdropBorderColor(1, 0.66, 0, 0.8)
-        if label and not frame.unlockLabel then
-            frame.unlockLabel = frame:CreateFontString(nil, "OVERLAY")
-            frame.unlockLabel:SetFont(ResolveFont("GothamNarrowUltra"), 10, "OUTLINE")
-            frame.unlockLabel:SetPoint("CENTER")
-            frame.unlockLabel:SetTextColor(1, 0.66, 0)
-        end
+        frame:SetBackdrop(nil)
         if frame.unlockLabel then
-            frame.unlockLabel:SetText(label or L["COMMON_DRAG_TO_MOVE"])
-            frame.unlockLabel:Show()
+            frame.unlockLabel:Hide()
         end
     else
         frame:SetBackdrop(nil)
@@ -146,13 +138,17 @@ local function ShouldBeVisible()
 end
 
 local function UpdateHealth()
+    local db = GetDB()
+    -- In preview mode with no other tank, don't overwrite the preview state (bar + name).
     if not currentOtherTank or not UnitExists(currentOtherTank) then
+        if db and db.unlock then
+            return
+        end
         healthBar:SetValue(0)
         nameText:Hide()
         return
     end
 
-    local db = GetDB()
     healthBar:SetMinMaxValues(0, UnitHealthMax(currentOtherTank))
     healthBar:SetValue(UnitHealth(currentOtherTank))
 

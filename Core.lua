@@ -44,3 +44,37 @@ function TankStuff.GetCoTankDB()
 end
 
 TankStuff.CO_TANK_DEFAULTS = CO_TANK_DEFAULTS
+
+-- Taunt Aura: square on screen when player uses a taunt
+local TAUNT_AURA_DEFAULTS = {
+    enabled = true,
+    size = 80,
+    duration = 1.5,
+    point = "CENTER",
+    x = 0,
+    y = 0,
+    relativePoint = "CENTER",
+    colorR = 1,
+    colorG = 0.4,
+    colorB = 0,
+    colorA = 0.9,
+    nameFontSize = 12,
+    raidTauntSync = true,
+}
+
+function TankStuff.GetTauntAuraDB()
+    if not TankStuffDB then
+        TankStuffDB = { coTank = {}, tauntAura = {} }
+    end
+    if not TankStuffDB.tauntAura then
+        TankStuffDB.tauntAura = {}
+    end
+    for k, v in pairs(TAUNT_AURA_DEFAULTS) do
+        if TankStuffDB.tauntAura[k] == nil then
+            TankStuffDB.tauntAura[k] = v
+        end
+    end
+    return TankStuffDB.tauntAura
+end
+
+TankStuff.TAUNT_AURA_DEFAULTS = TAUNT_AURA_DEFAULTS

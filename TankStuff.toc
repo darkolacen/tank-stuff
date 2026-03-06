@@ -3,12 +3,13 @@
 ## Author: Tank Stuff
 ## Version: 1.0.0
 ## SavedVariables: TankStuffDB
-## OptionalDeps: LibStub, LibSharedMedia-3.0
+## OptionalDeps: LibStub, LibSharedMedia-3.0, ElvUI
 ## Interface: 120001
 ## Category: User Interface
 
 Core.lua
 Locales\enUS.lua
 Modules\CoTankDisplay.lua
-Config\CoTank.lua
+Modules\TauntAura.lua
+Config\ElvUI.lua
 Media\SharedMedia.lua
