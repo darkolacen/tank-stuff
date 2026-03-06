@@ -181,7 +181,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         local spellId = tonumber(spellIdStr)
         if not spellId or not TAUNT_SPELL_IDS[spellId] then return end
         ShowTauntSquare(spellId, sender, nil, (targetName and targetName ~= "") and targetName or nil)
-        print("TankStuff: Raid taunt from " .. tostring(sender))
     elseif event == "PLAYER_LOGIN" then
         if C_ChatInfo and C_ChatInfo.RegisterAddonMessagePrefix then
             C_ChatInfo.RegisterAddonMessagePrefix(ADDON_MSG_PREFIX)
