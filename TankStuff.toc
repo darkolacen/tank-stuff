@@ -1,7 +1,7 @@
 ## Title: Tank Stuff
 ## Notes: UI addon with Co-Tank frame and shared media (Gotham font, Melli texture).
 ## Author: Tank Stuff
-## Version: 1.0.0
+## Version: 1.1.0
 ## SavedVariables: TankStuffDB
 ## OptionalDeps: LibStub, LibSharedMedia-3.0, ElvUI
 ## Interface: 120001
