@@ -1,15 +1,15 @@
 ## Title: Tank Stuff
-## Notes: UI addon with Co-Tank frame and shared media (Gotham font, Melli texture).
-## Author: Tank Stuff
-## Version: 1.1.0
+## Notes: ElvUI companion – Co-Tank frame. Adds its own "Tank Stuff" tab in ElvUI Config (like ElvUI Anchor). Requires ElvUI + ElvUI_Options.
+## Author: Dino
+## Version: 1.0.0
 ## SavedVariables: TankStuffDB
-## OptionalDeps: LibStub, LibSharedMedia-3.0, ElvUI
+## RequiredDeps: ElvUI
+## DefaultState: Enabled
+## Group: ElvUI
 ## Interface: 120001
-## Category: User Interface
 
 Core.lua
 Locales\enUS.lua
 Modules\CoTankDisplay.lua
-Modules\TauntAura.lua
-Config\ElvUI.lua
-Media\SharedMedia.lua
+Config\CoTank.lua
+ElvUI_Plugin.lua

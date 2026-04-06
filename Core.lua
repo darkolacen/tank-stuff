@@ -1,10 +1,28 @@
 -- TankStuff core: saved vars and co-tank defaults
 TankStuff = TankStuff or {}
 
+-- Preview is session-only (not saved)
+TankStuff.previewEnabled = false
+
+-- Single-level table so WoW SavedVariables reliably persist (key = TankStuffDB in TOC)
+if not _G.TankStuffDB then
+    _G.TankStuffDB = {}
+end
+
+-- Migrate old nested format to flat (once)
+do
+    local T = _G.TankStuffDB
+    if T.coTank and type(T.coTank) == "table" then
+        for k, v in pairs(T.coTank) do
+            if T[k] == nil then T[k] = v end
+        end
+        T.coTank = nil
+    end
+end
+
 local CO_TANK_DEFAULTS = {
     enabled = false,
-    unlock = false,
-    font = "GothamNarrowUltra",
+    font = "Fonts\\FRIZQT__.TTF",
     point = "CENTER",
     x = 200,
     y = 0,
@@ -29,52 +47,11 @@ local CO_TANK_DEFAULTS = {
 }
 
 function TankStuff.GetCoTankDB()
-    if not TankStuffDB then
-        TankStuffDB = { coTank = {} }
-    end
-    if not TankStuffDB.coTank then
-        TankStuffDB.coTank = {}
-    end
+    local T = _G.TankStuffDB
     for k, v in pairs(CO_TANK_DEFAULTS) do
-        if TankStuffDB.coTank[k] == nil then
-            TankStuffDB.coTank[k] = v
-        end
+        if T[k] == nil then T[k] = v end
     end
-    return TankStuffDB.coTank
+    return T
 end
 
 TankStuff.CO_TANK_DEFAULTS = CO_TANK_DEFAULTS
-
--- Taunt Aura: square on screen when player uses a taunt
-local TAUNT_AURA_DEFAULTS = {
-    enabled = true,
-    size = 80,
-    duration = 1.5,
-    point = "CENTER",
-    x = 0,
-    y = 0,
-    relativePoint = "CENTER",
-    colorR = 1,
-    colorG = 0.4,
-    colorB = 0,
-    colorA = 0.9,
-    nameFontSize = 12,
-    raidTauntSync = true,
-}
-
-function TankStuff.GetTauntAuraDB()
-    if not TankStuffDB then
-        TankStuffDB = { coTank = {}, tauntAura = {} }
-    end
-    if not TankStuffDB.tauntAura then
-        TankStuffDB.tauntAura = {}
-    end
-    for k, v in pairs(TAUNT_AURA_DEFAULTS) do
-        if TankStuffDB.tauntAura[k] == nil then
-            TankStuffDB.tauntAura[k] = v
-        end
-    end
-    return TankStuffDB.tauntAura
-end
-
-TankStuff.TAUNT_AURA_DEFAULTS = TAUNT_AURA_DEFAULTS
