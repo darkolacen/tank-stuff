@@ -1,7 +1,7 @@
 ## Title: Tank Stuff
 ## Notes: ElvUI companion – Co-Tank frame. Adds its own "Tank Stuff" tab in ElvUI Config (like ElvUI Anchor). Requires ElvUI + ElvUI_Options.
 ## Author: Dino
-## Version: 1.0.0
+## Version: 1.2.0
 ## SavedVariables: TankStuffDB
 ## RequiredDeps: ElvUI
 ## DefaultState: Enabled
